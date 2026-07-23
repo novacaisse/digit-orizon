@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-import logo from "@/assets/digitorizon-logo.png";
-import heroVisual from "@/assets/hero-visual.jpg";
+import logo from "@/assets/digitorizon-logo-v2.png.asset.json";
+import heroVisual from "@/assets/hero-mockup.png.asset.json";
 import awg from "@/assets/clients/awg.png";
-import eaa from "@/assets/clients/eaa.png";
 import casib from "@/assets/clients/casib.png";
 import dmi from "@/assets/clients/dmi.png";
 import levelConsulting from "@/assets/clients/level-consulting.png";
@@ -12,6 +11,14 @@ import sns from "@/assets/clients/sns.png";
 import kws from "@/assets/clients/kws.png";
 import exlog from "@/assets/clients/exlog.png";
 import santesucces from "@/assets/clients/santesucces.png";
+import daGroup from "@/assets/clients/da-group.png.asset.json";
+import kruman from "@/assets/clients/kruman.png.asset.json";
+import jhLegal from "@/assets/clients/jh-legal.png.asset.json";
+import sadima from "@/assets/clients/sadima.png.asset.json";
+import cliniqueMieuxEtre from "@/assets/clients/clinique-mieux-etre.png.asset.json";
+import clc from "@/assets/clients/clc.png.asset.json";
+import iscom from "@/assets/clients/iscom.png.asset.json";
+import novacaisse from "@/assets/clients/novacaisse.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -28,15 +35,23 @@ const NAV = [
 
 const TRUST_LOGOS = [
   { src: awg, alt: "Akindin Ward Group — client Digitorizon" },
-  { src: eaa, alt: "EAA — client Digitorizon" },
   { src: casib, alt: "Casib Coop-CA — client Digitorizon" },
   { src: dmi, alt: "DMI — client Digitorizon" },
   { src: levelConsulting, alt: "Level Consulting — client Digitorizon" },
   { src: sns, alt: "SNS Société de Nettoyage et Services — client Digitorizon" },
-  { src: kws, alt: "Kaïros Wilding Services — client Digitorizon" },
+  { src: kws, alt: "Kaïros Welding Services — client Digitorizon" },
   { src: exlog, alt: "EXLog International — client Digitorizon" },
   { src: santesucces, alt: "Santé Succès — client Digitorizon" },
+  { src: daGroup.url, alt: "DA-Group — client Digitorizon" },
+  { src: kruman.url, alt: "Kruman Capital Investment — client Digitorizon" },
+  { src: jhLegal.url, alt: "JH Cabinet juridique — client Digitorizon" },
+  { src: sadima.url, alt: "Sadima Logistics — client Digitorizon" },
+  { src: cliniqueMieuxEtre.url, alt: "Clinique du Mieux-Être — client Digitorizon" },
+  { src: clc.url, alt: "CLC Côte d'Ivoire — client Digitorizon" },
+  { src: iscom.url, alt: "IS'COM — client Digitorizon" },
+  { src: novacaisse.url, alt: "NovaCaisse — client Digitorizon" },
 ];
+
 
 const PROJECTS = [
   {
