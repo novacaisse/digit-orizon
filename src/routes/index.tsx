@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-import logo from "@/assets/digitorizon-logo.png";
-import heroVisual from "@/assets/hero-visual.jpg";
+import logo from "@/assets/digitorizon-logo-v2.png.asset.json";
+import heroVisual from "@/assets/hero-mockup.png.asset.json";
 import awg from "@/assets/clients/awg.png";
-import eaa from "@/assets/clients/eaa.png";
 import casib from "@/assets/clients/casib.png";
 import dmi from "@/assets/clients/dmi.png";
 import levelConsulting from "@/assets/clients/level-consulting.png";
@@ -12,6 +11,14 @@ import sns from "@/assets/clients/sns.png";
 import kws from "@/assets/clients/kws.png";
 import exlog from "@/assets/clients/exlog.png";
 import santesucces from "@/assets/clients/santesucces.png";
+import daGroup from "@/assets/clients/da-group.png.asset.json";
+import kruman from "@/assets/clients/kruman.png.asset.json";
+import jhLegal from "@/assets/clients/jh-legal.png.asset.json";
+import sadima from "@/assets/clients/sadima.png.asset.json";
+import cliniqueMieuxEtre from "@/assets/clients/clinique-mieux-etre.png.asset.json";
+import clc from "@/assets/clients/clc.png.asset.json";
+import iscom from "@/assets/clients/iscom.png.asset.json";
+import novacaisse from "@/assets/clients/novacaisse.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -28,15 +35,23 @@ const NAV = [
 
 const TRUST_LOGOS = [
   { src: awg, alt: "Akindin Ward Group — client Digitorizon" },
-  { src: eaa, alt: "EAA — client Digitorizon" },
   { src: casib, alt: "Casib Coop-CA — client Digitorizon" },
   { src: dmi, alt: "DMI — client Digitorizon" },
   { src: levelConsulting, alt: "Level Consulting — client Digitorizon" },
   { src: sns, alt: "SNS Société de Nettoyage et Services — client Digitorizon" },
-  { src: kws, alt: "Kaïros Wilding Services — client Digitorizon" },
+  { src: kws, alt: "Kaïros Welding Services — client Digitorizon" },
   { src: exlog, alt: "EXLog International — client Digitorizon" },
   { src: santesucces, alt: "Santé Succès — client Digitorizon" },
+  { src: daGroup.url, alt: "DA-Group — client Digitorizon" },
+  { src: kruman.url, alt: "Kruman Capital Investment — client Digitorizon" },
+  { src: jhLegal.url, alt: "JH Cabinet juridique — client Digitorizon" },
+  { src: sadima.url, alt: "Sadima Logistics — client Digitorizon" },
+  { src: cliniqueMieuxEtre.url, alt: "Clinique du Mieux-Être — client Digitorizon" },
+  { src: clc.url, alt: "CLC Côte d'Ivoire — client Digitorizon" },
+  { src: iscom.url, alt: "IS'COM — client Digitorizon" },
+  { src: novacaisse.url, alt: "NovaCaisse — client Digitorizon" },
 ];
+
 
 const PROJECTS = [
   {
@@ -211,7 +226,7 @@ function Landing() {
       <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/70">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <a href="#accueil" className="flex items-center gap-2">
-            <img src={logo} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
+            <img src={logo.url} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
           </a>
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             {NAV.map((n) => (
@@ -261,16 +276,18 @@ function Landing() {
             </div>
           </div>
           <div className="lg:col-span-6 reveal">
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-primary/20 via-gold/10 to-accent/20 blur-2xl" />
+            <div className="relative group [perspective:1200px]">
+              <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-primary/25 via-gold/15 to-accent/25 blur-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-x-8 bottom-2 h-8 bg-black/30 blur-2xl rounded-full" />
               <img
-                src={heroVisual}
-                alt="Création site web sur-mesure Côte d'Ivoire — mockup Digitorizon"
+                src={heroVisual.url}
+                alt="Site web professionnel Digitorizon — mockup laptop et mobile"
                 width={1536}
-                height={1280}
-                className="relative rounded-3xl shadow-[0_40px_100px_-30px_oklch(0.2_0.02_260_/_0.4)] float-slow"
+                height={1024}
+                className="relative w-full h-auto float-slow drop-shadow-[0_40px_60px_rgba(15,23,42,0.35)] transition-transform duration-700 will-change-transform group-hover:[transform:rotateY(-4deg)_rotateX(2deg)]"
               />
             </div>
+
           </div>
         </div>
 
@@ -292,18 +309,21 @@ function Landing() {
           <p className="text-center text-xs uppercase tracking-widest text-muted-foreground font-semibold">
             Ils nous ont fait confiance
           </p>
-          <div className="mt-8 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-6 items-center">
-            {TRUST_LOGOS.map((l, i) => (
-              <div key={i} className="flex items-center justify-center reveal" style={{ animationDelay: `${i * 40}ms` }}>
-                <img
-                  src={l.src}
-                  alt={l.alt}
-                  loading="lazy"
-                  className="h-10 sm:h-12 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-              </div>
-            ))}
+          <div className="mt-10 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div className="flex gap-12 sm:gap-16 marquee w-max">
+              {[...TRUST_LOGOS, ...TRUST_LOGOS].map((l, i) => (
+                <div key={i} className="shrink-0 flex items-center justify-center h-16 sm:h-20 w-36 sm:w-44">
+                  <img
+                    src={l.src}
+                    alt={l.alt}
+                    loading="lazy"
+                    className="max-h-full max-w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -549,7 +569,7 @@ function Landing() {
       <footer className="bg-ink text-ink-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <img src={logo} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
+            <img src={logo.url} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
             <p className="mt-4 text-sm text-white/70 max-w-sm">
               Agence Web — Côte d'Ivoire. Nous créons des sites professionnels sur-mesure clé en main, pensés pour convertir.
             </p>

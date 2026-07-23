@@ -198,3 +198,25 @@
 }
 
 .float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee-scroll 40s linear infinite;
+}
+.marquee:hover { animation-play-state: paused; }
+
+/* Hide Lovable editor badge on published site (all devices, all browsers) */
+#lovable-badge,
+[id^="lovable-badge"],
+a[href*="lovable.dev"][target="_blank"],
+iframe[src*="lovable.dev/badge"],
+div[class*="lovable-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
