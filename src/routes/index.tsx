@@ -566,7 +566,7 @@ function Landing() {
       <footer className="bg-ink text-ink-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <img src={logo} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
+            <img src={logo.url} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
             <p className="mt-4 text-sm text-white/70 max-w-sm">
               Agence Web — Côte d'Ivoire. Nous créons des sites professionnels sur-mesure clé en main, pensés pour convertir.
             </p>
