@@ -309,18 +309,21 @@ function Landing() {
           <p className="text-center text-xs uppercase tracking-widest text-muted-foreground font-semibold">
             Ils nous ont fait confiance
           </p>
-          <div className="mt-8 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-6 items-center">
-            {TRUST_LOGOS.map((l, i) => (
-              <div key={i} className="flex items-center justify-center reveal" style={{ animationDelay: `${i * 40}ms` }}>
-                <img
-                  src={l.src}
-                  alt={l.alt}
-                  loading="lazy"
-                  className="h-10 sm:h-12 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-              </div>
-            ))}
+          <div className="mt-10 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div className="flex gap-12 sm:gap-16 marquee w-max">
+              {[...TRUST_LOGOS, ...TRUST_LOGOS].map((l, i) => (
+                <div key={i} className="shrink-0 flex items-center justify-center h-16 sm:h-20 w-36 sm:w-44">
+                  <img
+                    src={l.src}
+                    alt={l.alt}
+                    loading="lazy"
+                    className="max-h-full max-w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </section>
 
