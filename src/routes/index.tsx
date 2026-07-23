@@ -276,16 +276,18 @@ function Landing() {
             </div>
           </div>
           <div className="lg:col-span-6 reveal">
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-primary/20 via-gold/10 to-accent/20 blur-2xl" />
+            <div className="relative group [perspective:1200px]">
+              <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-primary/25 via-gold/15 to-accent/25 blur-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-x-8 bottom-2 h-8 bg-black/30 blur-2xl rounded-full" />
               <img
-                src={heroVisual}
-                alt="Création site web sur-mesure Côte d'Ivoire — mockup Digitorizon"
+                src={heroVisual.url}
+                alt="Site web professionnel Digitorizon — mockup laptop et mobile"
                 width={1536}
-                height={1280}
-                className="relative rounded-3xl shadow-[0_40px_100px_-30px_oklch(0.2_0.02_260_/_0.4)] float-slow"
+                height={1024}
+                className="relative w-full h-auto float-slow drop-shadow-[0_40px_60px_rgba(15,23,42,0.35)] transition-transform duration-700 will-change-transform group-hover:[transform:rotateY(-4deg)_rotateX(2deg)]"
               />
             </div>
+
           </div>
         </div>
 
