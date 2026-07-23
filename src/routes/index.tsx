@@ -226,7 +226,7 @@ function Landing() {
       <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/70">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <a href="#accueil" className="flex items-center gap-2">
-            <img src={logo} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
+            <img src={logo.url} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
           </a>
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             {NAV.map((n) => (
