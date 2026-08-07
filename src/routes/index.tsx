@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
 import { FAQS } from "@/lib/faq";
-import { LOGO_DATA_URI, ICON_DATA_URI } from "@/lib/brand";
+import { LOGO_URL, ICON_DATA_URI } from "@/lib/brand";
 import awg from "@/assets/clients/awg.png";
 import casib from "@/assets/clients/casib.png";
 import dmi from "@/assets/clients/dmi.png";
@@ -293,7 +293,7 @@ function Landing() {
       <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/70">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <a href="#accueil" className="flex items-center gap-2">
-            <img src={LOGO_DATA_URI} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
+            <img src={LOGO_URL} alt="Digitorizon — agence web Côte d'Ivoire" className="h-9 w-auto" width={160} height={40} />
           </a>
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             {NAV.map((n) => (
@@ -669,7 +669,7 @@ function Landing() {
       <footer className="bg-ink text-ink-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <img src={LOGO_DATA_URI} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
+            <img src={LOGO_URL} alt="Digitorizon" className="h-10 w-auto brightness-0 invert" width={160} height={40} />
             <p className="mt-4 text-sm text-white/70 max-w-sm">
               Agence Web — Côte d'Ivoire. Nous créons des sites professionnels sur-mesure clé en main, pensés pour convertir.
             </p>
