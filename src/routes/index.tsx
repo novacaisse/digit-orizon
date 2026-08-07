@@ -698,4 +698,5 @@ function Field({
         className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
       />
     </div>
-  ]}
+  );
+}
