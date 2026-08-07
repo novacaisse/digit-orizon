@@ -266,6 +266,7 @@ function Landing() {
   useReveal();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [hasSite, setHasSite] = useState("Non");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -592,6 +593,8 @@ function Landing() {
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <Field label="Nom complet *" name="name" required />
+              <Field label="Nom de l'entreprise" name="company" />
+              <Field label="Domaine d'activité" name="industry" />
               <Field label="Email *" name="email" type="email" required />
               <Field label="Téléphone / WhatsApp *" name="phone" required />
               <div>
@@ -599,11 +602,53 @@ function Landing() {
                 <select name="project_type" defaultValue="Site vitrine" className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
                   <option>Site vitrine</option>
                   <option>E-commerce</option>
+                  <option>Refonte de site existant</option>
                   <option>Gestion digitale complète</option>
                   <option>Autre</option>
                 </select>
               </div>
-              <Field label="Budget indicatif" name="budget" className="sm:col-span-2" />
+              <div>
+                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">Avez-vous déjà un site web ?</label>
+                <select
+                  name="has_existing_site"
+                  value={hasSite}
+                  onChange={(e) => setHasSite(e.target.value)}
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                >
+                  <option>Non</option>
+                  <option>Oui</option>
+                </select>
+              </div>
+              {hasSite === "Oui" && (
+                <Field label="URL de votre site actuel" name="existing_site_url" className="sm:col-span-2" />
+              )}
+              <div>
+                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">Budget indicatif</label>
+                <select name="budget" defaultValue="Je ne sais pas encore" className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+                  <option>Moins de 100 000 FCFA</option>
+                  <option>100 000 - 500 000 FCFA</option>
+                  <option>Plus de 500 000 FCFA</option>
+                  <option>Je ne sais pas encore</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">Délai souhaité</label>
+                <select name="timeline" defaultValue="Pas pressé" className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+                  <option>Urgent (5 à 10 jours)</option>
+                  <option>Standard (2 à 3 semaines)</option>
+                  <option>Flexible (jusqu'à 1 mois)</option>
+                  <option>Pas pressé</option>
+                </select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">Exemple(s) de site(s) que vous aimez (optionnel)</label>
+                <input
+                  name="site_examples"
+                  type="text"
+                  placeholder="Lien(s) ou description de sites qui vous inspirent"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
+              </div>
               <div className="sm:col-span-2">
                 <label className="text-xs font-semibold text-foreground uppercase tracking-wider">Message / description du projet</label>
                 <textarea name="message" rows={5} className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />

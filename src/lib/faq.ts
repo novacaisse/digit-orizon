@@ -5,7 +5,7 @@ export const FAQS = [
   },
   {
     q: "Combien de temps pour livrer mon site ?",
-    a: "Le délai moyen dépend de la complexité du projet et vous est communiqué précisément lors du devis.",
+    a: "Entre 5 jours et 1 mois selon la complexité du projet. Le délai précis vous est communiqué lors du devis.",
   },
   {
     q: "L'hébergement et le nom de domaine sont-ils inclus ?",
