@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Lovable's own builds force the Cloudflare preset regardless of this setting.
+  // Outside Lovable (e.g. a Hostinger/VPS build running `npm run build`), this
+  // targets a plain Node.js server instead, since Cloudflare Workers output
+  // isn't a standalone Node app and won't run on generic Node hosting.
+  nitro: {
+    preset: "node-server",
+  },
 });
