@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { FAQS as FAQ_SCHEMA } from "../lib/faq";
 
 function NotFoundComponent() {
   return (
@@ -72,6 +73,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_URL = "https://digitorizon.com";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -83,6 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Digitorizon, agence web en Côte d'Ivoire, crée des sites professionnels sur-mesure clé en main : design, hébergement, nom de domaine et contenu inclus. Devis gratuit.",
       },
+      { name: "robots", content: "index, follow" },
       { name: "author", content: "Digitorizon" },
       { name: "theme-color", content: "#F7941D" },
       { property: "og:title", content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire" },
@@ -93,19 +97,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Digitorizon" },
-      { property: "og:image", content: "/favicon.png" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:locale", content: "fr_CI" },
+      { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Digitorizon — Agence web Côte d'Ivoire" },
       {
         name: "twitter:description",
         content: "Création de sites web professionnels sur-mesure, clé en main. Devis gratuit.",
       },
-      { name: "twitter:image", content: "/favicon.png" },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -119,17 +131,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
+          "@id": `${SITE_URL}/#organization`,
           name: "Digitorizon",
           description:
             "Agence web en Côte d'Ivoire spécialisée dans la création de sites professionnels sur-mesure clé en main.",
+          url: SITE_URL,
+          logo: `${SITE_URL}/favicon.png`,
+          image: `${SITE_URL}/og-image.jpg`,
           email: "contact@digitorizon.com",
           telephone: "+2250500259286",
-          address: { "@type": "PostalAddress", addressCountry: "CI" },
+          priceRange: "$$",
+          address: { "@type": "PostalAddress", addressCountry: "CI", addressLocality: "Abidjan" },
           areaServed: "CI",
           sameAs: [
             "https://www.facebook.com/share/1CoBaP4SxY/",
             "https://youtube.com/@digitorizon-f4c",
           ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_SCHEMA.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         }),
       },
     ],
@@ -142,7 +171,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
         <HeadContent />
       </head>
