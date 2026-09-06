@@ -12,6 +12,11 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { FAQS as FAQ_SCHEMA } from "../lib/faq";
+import { SiteHeader } from "../components/site/SiteHeader";
+import { SiteFooter } from "../components/site/SiteFooter";
+import { StickyCta } from "../components/site/StickyCta";
+import { ChatWidget } from "../components/ChatWidget";
+import { QuoteFormDialog } from "../components/QuoteFormDialog";
 
 function NotFoundComponent() {
   return (
@@ -89,7 +94,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "robots", content: "index, follow" },
       { name: "author", content: "Digitorizon" },
       { name: "theme-color", content: "#F7941D" },
-      { property: "og:title", content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire" },
+      {
+        property: "og:title",
+        content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire",
+      },
       {
         property: "og:description",
         content:
@@ -100,7 +108,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:locale", content: "fr_CI" },
       { property: "og:image", content: `${SITE_URL}/favicon.png` },
-      { property: "og:image:alt", content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire" },
+      {
+        property: "og:image:alt",
+        content: "Digitorizon — Création de site web professionnel en Côte d'Ivoire",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Digitorizon — Agence web Côte d'Ivoire" },
       {
@@ -118,7 +129,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
     scripts: [
@@ -184,8 +195,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen bg-background text-foreground flex flex-col">
+        <SiteHeader />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
+      <StickyCta />
+      <ChatWidget />
+      <QuoteFormDialog />
     </QueryClientProvider>
   );
 }
