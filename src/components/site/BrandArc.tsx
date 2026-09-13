@@ -7,7 +7,7 @@ type BrandArcProps = {
 };
 
 /**
- * L'arc du logo (orange → blanc → bleu) réutilisé comme motif visuel signature.
+ * L'arc du logo (orange → or → bleu) réutilisé comme motif visuel signature.
  * `pathLength={1}` fixe la longueur logique du tracé à 1, quelle que soit sa
  * géométrie réelle — ça permet à `.brand-arc-path` (stroke-dasharray/offset en
  * styles.css) d'animer le "dessin" du trait sans mesurer la courbe au runtime.
@@ -33,7 +33,7 @@ export function BrandArc({ variant = "divider", flip = false, className = "" }: 
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0%" stopColor="#F7941D" />
-            <stop offset="50%" stopColor="#FAF9F7" />
+            <stop offset="50%" stopColor="#F5B942" />
             <stop offset="100%" stopColor="#29ABE2" />
           </linearGradient>
         </defs>
