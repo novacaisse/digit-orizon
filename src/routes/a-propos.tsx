@@ -4,6 +4,7 @@ import { Eye, Handshake, PhoneCall, Zap } from "lucide-react";
 import { FounderAvatar } from "@/components/site/FounderAvatar";
 import { Illustration } from "@/components/site/Illustration";
 import visionAPropos from "@/assets/illustrations/vision-a-propos.jpg";
+import heroAPropos from "@/assets/illustrations/hero-a-propos.jpg";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
@@ -47,19 +48,30 @@ function AProposPage() {
   return (
     <div>
       <section className="bg-hero-gradient py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <span className="eyebrow">À propos</span>
-          <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight">
-            L'agence derrière votre{" "}
-            <span className="text-gradient-brand">transformation digitale</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Digitorizon est une agence digitale basée à Treichville, Abidjan, née d'une conviction
-            simple : chaque entreprise ivoirienne mérite une présence en ligne professionnelle, sans
-            complexité ni prix excessif. Depuis sa création, l'agence a accompagné plus de 50
-            clients à travers plus de 100 projets — sites web, présence sociale, solutions sur
-            mesure et outils de gestion propulsés par l'intelligence artificielle.
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-6">
+            <span className="eyebrow">À propos</span>
+            <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight">
+              L'agence derrière votre{" "}
+              <span className="text-gradient-brand">transformation digitale</span>
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground">
+              Digitorizon est une agence digitale basée à Treichville, Abidjan, née d'une conviction
+              simple : chaque entreprise ivoirienne mérite une présence en ligne professionnelle,
+              sans complexité ni prix excessif. Depuis sa création, l'agence a accompagné plus de 50
+              clients à travers plus de 100 projets — sites web, présence sociale, solutions sur
+              mesure et outils de gestion propulsés par l'intelligence artificielle.
+            </p>
+          </div>
+          <div className="lg:col-span-6">
+            <img
+              src={heroAPropos}
+              alt="Équipe Digitorizon collaborant sur un projet client"
+              className="rounded-[2rem] shadow-[0_40px_80px_-24px_#12100E4D] w-full h-auto"
+              width={1448}
+              height={1086}
+            />
+          </div>
         </div>
       </section>
 
@@ -85,7 +97,7 @@ function AProposPage() {
       {/* Approche */}
       <section className="py-24 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl reveal">
+          <div className="max-w-2xl">
             <span className="eyebrow">Notre approche</span>
             <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight">
               4 principes qui nous guident
