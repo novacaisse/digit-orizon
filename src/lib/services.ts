@@ -1,4 +1,15 @@
-import { Globe2, Cpu, Store, type LucideIcon } from "lucide-react";
+import {
+  Globe2,
+  Cpu,
+  Store,
+  Code2,
+  Share2,
+  Building2,
+  Clapperboard,
+  LayoutDashboard,
+  BrainCircuit,
+  type LucideIcon,
+} from "lucide-react";
 
 export type ServiceId = "presence" | "sur-mesure" | "zegos";
 
@@ -47,6 +58,59 @@ export const SERVICES: Service[] = [
     description:
       "ZegOS est notre solution de gestion tout-en-un pour les commerces africains : caisse enregistreuse digitale, gestion des stocks, suivi financier — pensée pour le terrain, avec paiement Mobile Money intégré.",
     bullets: ["Caisse digitale ZegCaisse", "Gestion des stocks", "Paiement Mobile Money intégré"],
+  },
+];
+
+export type ExtraService = {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
+// Liste élargie de nos prestations concrètes, présentée sur la page Services
+// en complément des 3 offres phares ci-dessus.
+export const EXTRA_SERVICES: ExtraService[] = [
+  {
+    id: "application-web",
+    icon: Code2,
+    title: "Application web sur mesure",
+    description: "Une application web pensée pour votre activité, de la conception au déploiement.",
+  },
+  {
+    id: "community-manager",
+    icon: Share2,
+    title: "Community manager",
+    description:
+      "Animation de vos réseaux sociaux : contenus, calendrier de publication, engagement.",
+  },
+  {
+    id: "digitalisation-externalisee",
+    icon: Building2,
+    title: "Digitalisation externalisée",
+    description:
+      "Votre service digital externalisé, géré par notre équipe comme s'il était le vôtre.",
+  },
+  {
+    id: "affiches-videos",
+    icon: Clapperboard,
+    title: "Création d'affiches et vidéos",
+    description:
+      "Supports visuels et vidéos pour vos campagnes, votre communication et vos réseaux.",
+  },
+  {
+    id: "logiciel-gestion",
+    icon: LayoutDashboard,
+    title: "Logiciel de gestion",
+    description:
+      "Un outil de gestion sur mesure pour piloter stocks, ventes ou activité au quotidien.",
+  },
+  {
+    id: "integration-ia",
+    icon: BrainCircuit,
+    title: "Intégration de l'IA en entreprise",
+    description:
+      "Automatisation et assistants IA intégrés à vos outils pour gagner du temps au quotidien.",
   },
 ];
 
