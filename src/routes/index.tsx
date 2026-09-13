@@ -5,8 +5,11 @@ import { FAQS } from "@/lib/faq";
 import { SERVICES } from "@/lib/services";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { openQuoteForm, openChat } from "@/lib/uiEvents";
-import { HeroMockup } from "@/components/site/HeroMockup";
 import { Illustration } from "@/components/site/Illustration";
+import heroAccueil from "@/assets/illustrations/hero-accueil.jpg";
+import serviceSurMesure from "@/assets/illustrations/service-sur-mesure.jpg";
+import serviceZegos from "@/assets/illustrations/service-zegos.jpg";
+import commentCaMarche from "@/assets/illustrations/comment-ca-marche.jpg";
 import awg from "@/assets/clients/awg.png";
 import casib from "@/assets/clients/casib.png";
 import dmi from "@/assets/clients/dmi.png";
@@ -239,8 +242,16 @@ function Landing() {
               </button>
             </div>
           </div>
-          <div className="lg:col-span-6 reveal">
-            <HeroMockup />
+          <div className="lg:col-span-6 reveal relative">
+            <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-primary/20 via-white/10 to-accent/20 blur-3xl opacity-80" />
+            <img
+              src={heroAccueil}
+              alt="Entrepreneur ivoirien gérant sa présence en ligne depuis son ordinateur et son téléphone"
+              className="relative rounded-[2rem] shadow-[0_40px_80px_-24px_#12100E4D] w-full h-auto"
+              width={1448}
+              height={1086}
+              fetchPriority="high"
+            />
           </div>
         </div>
       </section>
@@ -309,6 +320,13 @@ function Landing() {
                 <Illustration
                   icon={s.icon}
                   variant={s.id === "zegos" ? "ink" : s.id === "sur-mesure" ? "blue" : "orange"}
+                  image={
+                    s.id === "sur-mesure"
+                      ? { src: serviceSurMesure, alt: s.title }
+                      : s.id === "zegos"
+                        ? { src: serviceZegos, alt: s.title }
+                        : undefined
+                  }
                 />
                 <div className="mt-5">
                   <div className="font-bold text-lg group-hover:text-primary transition-colors">
@@ -336,7 +354,14 @@ function Landing() {
             </h2>
           </div>
 
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <img
+            src={commentCaMarche}
+            alt="Parcours client Digitorizon : échange, appel, proposition, mise en ligne"
+            loading="lazy"
+            className="reveal mt-12 w-full rounded-3xl border border-white/10"
+          />
+
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {PROCESS.map((s, i) => (
               <div
                 key={s.n}

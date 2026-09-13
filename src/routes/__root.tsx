@@ -16,22 +16,20 @@ import { SiteHeader } from "../components/site/SiteHeader";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { StickyCta } from "../components/site/StickyCta";
 import { ChatWidget } from "../components/ChatWidget";
+import page404 from "../assets/illustrations/page-404.jpg";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
+      <div className="max-w-sm text-center">
+        <img src={page404} alt="" className="mx-auto w-48 h-48 rounded-3xl object-cover" />
+        <h1 className="mt-6 text-3xl font-bold text-foreground">Page introuvable</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          La page que vous cherchez n'existe pas ou a été déplacée.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+          <Link to="/" className="btn-primary">
+            Retour à l'accueil
           </Link>
         </div>
       </div>

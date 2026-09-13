@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 
 import { openQuoteForm } from "@/lib/uiEvents";
+import heroContact from "@/assets/illustrations/hero-contact.jpg";
 
 const QUOTE_FORM_URL = "https://digitorizon-os.vercel.app/f/digitorizon-com";
 
@@ -33,6 +34,13 @@ function ContactPage() {
             Remplissez le formulaire ci-contre, ou contactez-nous directement — on revient vers vous
             rapidement avec une proposition claire.
           </p>
+
+          <img
+            src={heroContact}
+            alt="Professionnelle ivoirienne en visioconférence, prête à échanger sur votre projet"
+            loading="lazy"
+            className="mt-6 w-full rounded-2xl border border-border"
+          />
 
           <div className="mt-8 space-y-3 text-sm">
             <a href="mailto:contact@digitorizon.com" className="flex items-center gap-3 group">

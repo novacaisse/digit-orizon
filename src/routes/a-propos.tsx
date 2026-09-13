@@ -3,6 +3,7 @@ import { Eye, Handshake, PhoneCall, Zap } from "lucide-react";
 
 import { FounderAvatar } from "@/components/site/FounderAvatar";
 import { Illustration } from "@/components/site/Illustration";
+import visionAPropos from "@/assets/illustrations/vision-a-propos.jpg";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
@@ -110,8 +111,14 @@ function AProposPage() {
 
       {/* Vision */}
       <section className="py-24 bg-ink-gradient text-ink-foreground">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span className="eyebrow eyebrow-invert">Notre vision</span>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <img
+            src={visionAPropos}
+            alt="Partenariat et croissance digitale en Afrique de l'Ouest"
+            loading="lazy"
+            className="w-full rounded-3xl border border-white/10"
+          />
+          <span className="mt-10 inline-block eyebrow eyebrow-invert">Notre vision</span>
           <p className="mt-5 text-2xl sm:text-3xl font-bold leading-snug">
             Devenir le partenaire digital de référence pour les PME d'Afrique francophone, en
             combinant expertise humaine et{" "}

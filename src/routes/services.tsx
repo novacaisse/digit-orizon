@@ -5,6 +5,8 @@ import { SERVICES, PRESENCE_TIERS } from "@/lib/services";
 import { Illustration } from "@/components/site/Illustration";
 import { openQuoteForm } from "@/lib/uiEvents";
 import { cn } from "@/lib/utils";
+import serviceSurMesure from "@/assets/illustrations/service-sur-mesure.jpg";
+import zegosCaisseDetail from "@/assets/illustrations/zegos-caisse-detail.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -111,6 +113,7 @@ function ServicesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
           <Illustration
             icon={surMesure.icon}
+            image={{ src: serviceSurMesure, alt: surMesure.title }}
             variant="blue"
             chips={["Applications", "IA"]}
             className="order-2 lg:order-1"
@@ -167,7 +170,15 @@ function ServicesPage() {
               </button>
             </div>
           </div>
-          <Illustration icon={zegos.icon} variant="ink" chips={["ZegCaisse", "Mobile Money"]} />
+          <Illustration
+            icon={zegos.icon}
+            image={{
+              src: zegosCaisseDetail,
+              alt: "Caisse digitale ZegCaisse avec paiement Mobile Money",
+            }}
+            variant="ink"
+            chips={["ZegCaisse", "Mobile Money"]}
+          />
         </div>
       </section>
     </div>
