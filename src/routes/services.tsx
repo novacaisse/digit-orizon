@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 
-import { SERVICES, PRESENCE_TIERS } from "@/lib/services";
+import { SERVICES, PRESENCE_TIERS, EXTRA_SERVICES } from "@/lib/services";
 import { Illustration } from "@/components/site/Illustration";
 import { openQuoteForm } from "@/lib/uiEvents";
 import { cn } from "@/lib/utils";
@@ -179,6 +179,37 @@ function ServicesPage() {
             variant="ink"
             chips={["ZegCaisse", "Mobile Money"]}
           />
+        </div>
+      </section>
+
+      {/* Toute notre offre */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Toute notre offre</span>
+            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Et bien plus <span className="text-gradient-brand">selon vos besoins</span>
+            </h2>
+          </div>
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EXTRA_SERVICES.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div key={s.id} className="rounded-2xl border border-border bg-card p-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center">
+                    <Icon className="w-6 h-6" strokeWidth={1.75} />
+                  </div>
+                  <div className="mt-4 font-semibold">{s.title}</div>
+                  <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-12 text-center">
+            <button type="button" onClick={() => openQuoteForm()} className="btn-primary">
+              Discuter de mon besoin
+            </button>
+          </div>
         </div>
       </section>
     </div>

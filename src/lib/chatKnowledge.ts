@@ -1,5 +1,5 @@
 import { FAQS } from "@/lib/faq";
-import { SERVICES, PRESENCE_TIERS } from "@/lib/services";
+import { SERVICES, PRESENCE_TIERS, EXTRA_SERVICES } from "@/lib/services";
 
 const CONTACT = {
   email: "contact@digitorizon.com",
@@ -27,6 +27,10 @@ export function buildSystemPrompt(page?: string): string {
     "\n",
   );
 
+  const extraServicesBlock = EXTRA_SERVICES.map((s) => `- ${s.title} : ${s.description}`).join(
+    "\n",
+  );
+
   const faqBlock = FAQS.map((f) => `Q: ${f.q}\nR: ${f.a}`).join("\n\n");
 
   return `Tu es l'assistant du site web de Digitorizon, une agence digitale basée à Treichville, Abidjan, Côte d'Ivoire.
@@ -38,6 +42,9 @@ ${servicesBlock}
 
 ## Formules de l'offre "Présence Digitale" (pour information, jamais de prix chiffré)
 ${tiersBlock}
+
+## Autres prestations disponibles
+${extraServicesBlock}
 
 ## Notre process
 ${PROCESS_STEPS.map((s, i) => `${i + 1}. ${s}`).join("\n")}
