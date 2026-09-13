@@ -7,6 +7,7 @@ import { TESTIMONIALS } from "@/lib/testimonials";
 import { openQuoteForm, openChat } from "@/lib/uiEvents";
 import { Illustration } from "@/components/site/Illustration";
 import heroAccueil from "@/assets/illustrations/hero-accueil.jpg";
+import servicePresenceDigitale from "@/assets/illustrations/service-presence-digitale.jpg";
 import serviceSurMesure from "@/assets/illustrations/service-sur-mesure.jpg";
 import serviceZegos from "@/assets/illustrations/service-zegos.jpg";
 import commentCaMarche from "@/assets/illustrations/comment-ca-marche.jpg";
@@ -321,11 +322,13 @@ function Landing() {
                   icon={s.icon}
                   variant={s.id === "zegos" ? "ink" : s.id === "sur-mesure" ? "blue" : "orange"}
                   image={
-                    s.id === "sur-mesure"
-                      ? { src: serviceSurMesure, alt: s.title }
-                      : s.id === "zegos"
-                        ? { src: serviceZegos, alt: s.title }
-                        : undefined
+                    s.id === "presence"
+                      ? { src: servicePresenceDigitale, alt: s.title }
+                      : s.id === "sur-mesure"
+                        ? { src: serviceSurMesure, alt: s.title }
+                        : s.id === "zegos"
+                          ? { src: serviceZegos, alt: s.title }
+                          : undefined
                   }
                 />
                 <div className="mt-5">

@@ -5,8 +5,24 @@ import { SERVICES, PRESENCE_TIERS, EXTRA_SERVICES } from "@/lib/services";
 import { Illustration } from "@/components/site/Illustration";
 import { openQuoteForm } from "@/lib/uiEvents";
 import { cn } from "@/lib/utils";
+import servicePresenceDigitale from "@/assets/illustrations/service-presence-digitale.jpg";
 import serviceSurMesure from "@/assets/illustrations/service-sur-mesure.jpg";
 import zegosCaisseDetail from "@/assets/illustrations/zegos-caisse-detail.jpg";
+import serviceApplicationWeb from "@/assets/illustrations/service-application-web.jpg";
+import serviceCommunityManager from "@/assets/illustrations/service-community-manager.jpg";
+import serviceDigitalisationExternalisee from "@/assets/illustrations/service-digitalisation-externalisee.jpg";
+import serviceAffichesVideos from "@/assets/illustrations/service-affiches-videos.jpg";
+import serviceLogicielGestion from "@/assets/illustrations/service-logiciel-gestion.jpg";
+import serviceIntegrationIa from "@/assets/illustrations/service-integration-ia.jpg";
+
+const EXTRA_SERVICE_IMAGES: Record<string, string> = {
+  "application-web": serviceApplicationWeb,
+  "community-manager": serviceCommunityManager,
+  "digitalisation-externalisee": serviceDigitalisationExternalisee,
+  "affiches-videos": serviceAffichesVideos,
+  "logiciel-gestion": serviceLogicielGestion,
+  "integration-ia": serviceIntegrationIa,
+};
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -62,6 +78,7 @@ function ServicesPage() {
             </div>
             <Illustration
               icon={presence.icon}
+              image={{ src: servicePresenceDigitale, alt: presence.title }}
               variant="orange"
               chips={["Site web", "Réseaux sociaux"]}
             />
@@ -194,13 +211,27 @@ function ServicesPage() {
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {EXTRA_SERVICES.map((s) => {
               const Icon = s.icon;
+              const image = EXTRA_SERVICE_IMAGES[s.id];
               return (
-                <div key={s.id} className="rounded-2xl border border-border bg-card p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center">
-                    <Icon className="w-6 h-6" strokeWidth={1.75} />
+                <div
+                  key={s.id}
+                  className="rounded-2xl border border-border bg-card overflow-hidden"
+                >
+                  {image ? (
+                    <img
+                      src={image}
+                      alt={s.title}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  ) : null}
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary grid place-items-center">
+                      <Icon className="w-6 h-6" strokeWidth={1.75} />
+                    </div>
+                    <div className="mt-4 font-semibold">{s.title}</div>
+                    <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
                   </div>
-                  <div className="mt-4 font-semibold">{s.title}</div>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
                 </div>
               );
             })}
