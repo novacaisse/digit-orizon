@@ -16,6 +16,7 @@ import { SiteHeader } from "../components/site/SiteHeader";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { StickyCta } from "../components/site/StickyCta";
 import { ChatWidget } from "../components/ChatWidget";
+import { DevisModal } from "../components/DevisModal";
 import page404 from "../assets/illustrations/page-404.jpg";
 
 function NotFoundComponent() {
@@ -202,6 +203,7 @@ function RootComponent() {
       </div>
       <StickyCta />
       <ChatWidget />
+      <DevisModal />
     </QueryClientProvider>
   );
 }

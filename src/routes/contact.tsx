@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 
-import { openQuoteForm } from "@/lib/uiEvents";
+import { openQuoteForm, QUOTE_FORM_URL } from "@/lib/uiEvents";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import heroContact from "@/assets/illustrations/hero-contact.jpg";
-
-const QUOTE_FORM_URL = "https://digitorizon-os.vercel.app/f/digitorizon-com";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -108,9 +107,12 @@ function ContactPage() {
             rel="noopener noreferrer"
             className="mt-4 text-xs text-muted-foreground hover:text-primary transition underline underline-offset-2"
           >
-            La fenêtre ne s'ouvre pas ? Cliquez ici pour l'ouvrir dans un nouvel onglet
+            Le formulaire ne s'affiche pas ? Ouvrez-le dans un nouvel onglet
           </a>
         </div>
+      </div>
+      <div className="mt-16 lg:mt-24">
+        <TrustedBy />
       </div>
     </div>
   );

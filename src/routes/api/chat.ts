@@ -69,7 +69,7 @@ export const Route = createFileRoute("/api/chat")({
             },
             body: JSON.stringify({
               model: ANTHROPIC_MODEL,
-              max_tokens: 300,
+              max_tokens: 600,
               system: buildSystemPrompt(typeof page === "string" ? page : undefined),
               messages,
             }),

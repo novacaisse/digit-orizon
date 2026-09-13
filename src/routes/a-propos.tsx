@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Eye, Handshake, PhoneCall, Zap } from "lucide-react";
 
-import { FounderAvatar } from "@/components/site/FounderAvatar";
 import { Illustration } from "@/components/site/Illustration";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import visionAPropos from "@/assets/illustrations/vision-a-propos.jpg";
 import heroAPropos from "@/assets/illustrations/hero-a-propos.jpg";
+import founderZegbe from "@/assets/illustrations/founder-zegbe.jpg";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
@@ -75,11 +76,19 @@ function AProposPage() {
         </div>
       </section>
 
+      <TrustedBy />
+
       {/* Fondateur */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 rounded-3xl border border-border bg-card p-8 sm:p-10">
-            <FounderAvatar />
+            <img
+              src={founderZegbe}
+              alt="Zegbe Kahapeu Anselme-Prudent, fondateur de Digitorizon"
+              className="w-32 h-32 rounded-2xl object-cover shrink-0"
+              width={500}
+              height={593}
+            />
             <div>
               <span className="eyebrow">Fondateur</span>
               <h2 className="mt-3 text-2xl font-bold">Zegbe Kahapeu Anselme-Prudent</h2>
