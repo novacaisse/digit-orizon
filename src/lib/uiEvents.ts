@@ -1,23 +1,14 @@
-import type { ServiceId } from "@/lib/services";
+// Petit bus d'événements pour déclencher le chat depuis n'importe quel CTA,
+// sur n'importe quelle page, sans prop-drilling et sans state manager global.
 
-// Petit bus d'événements pour déclencher les modals (formulaire de devis, chat)
-// depuis n'importe quel CTA, sur n'importe quelle page, sans prop-drilling
-// et sans ajouter de gestionnaire d'état global.
-
-const OPEN_QUOTE_FORM = "digitorizon:open-quote-form";
 const OPEN_CHAT = "digitorizon:open-chat";
 
-export function openQuoteForm(prefillNeed?: ServiceId) {
-  window.dispatchEvent(
-    new CustomEvent<{ prefillNeed?: ServiceId }>(OPEN_QUOTE_FORM, { detail: { prefillNeed } }),
-  );
-}
+const QUOTE_FORM_URL = "https://digitorizon-os.vercel.app/f/digitorizon-com";
 
-export function onOpenQuoteForm(handler: (prefillNeed?: ServiceId) => void) {
-  const listener = (e: Event) =>
-    handler((e as CustomEvent<{ prefillNeed?: ServiceId }>).detail?.prefillNeed);
-  window.addEventListener(OPEN_QUOTE_FORM, listener);
-  return () => window.removeEventListener(OPEN_QUOTE_FORM, listener);
+// Ouvre le formulaire de devis externe dans une fenêtre popup — pas d'iframe,
+// car on ne peut pas garantir que ce service autorise l'intégration (CSP/X-Frame-Options).
+export function openQuoteForm() {
+  window.open(QUOTE_FORM_URL, "digitorizon-devis", "width=560,height=800,noopener,noreferrer");
 }
 
 export function openChat() {

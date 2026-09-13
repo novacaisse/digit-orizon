@@ -91,7 +91,9 @@
 }
 
 @utility text-gradient-brand {
-  background: linear-gradient(120deg, #f7941d 0%, #ffffff 50%, #29abe2 100%);
+  /* Le blanc pur au milieu du dégradé devient illisible sur les fonds clairs :
+     on utilise l'or de la marque comme point médian à la place. */
+  background: linear-gradient(120deg, #f7941d 0%, #f5b942 50%, #29abe2 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

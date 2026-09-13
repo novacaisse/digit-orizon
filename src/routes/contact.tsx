@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FileText } from "lucide-react";
 
-import { QuoteForm } from "@/components/QuoteForm";
+import { openQuoteForm } from "@/lib/uiEvents";
+
+const QUOTE_FORM_URL = "https://digitorizon-os.vercel.app/f/digitorizon-com";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -77,19 +80,28 @@ function ContactPage() {
               <span className="text-muted-foreground">Treichville, Abidjan, Côte d'Ivoire</span>
             </div>
           </div>
-
-          <div className="mt-8 rounded-2xl overflow-hidden border border-border">
-            <iframe
-              title="Localisation Digitorizon — Treichville, Abidjan"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-4.024%2C5.28%2C-3.99%2C5.31&layer=mapnik&marker=5.295%2C-4.007"
-              className="w-full h-56 grayscale"
-              loading="lazy"
-            />
-          </div>
         </div>
 
-        <div className="lg:col-span-3 rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-[0_20px_60px_-20px_#12100E26]">
-          <QuoteForm />
+        <div className="lg:col-span-3 rounded-3xl border border-border bg-card p-8 sm:p-12 shadow-[0_20px_60px_-20px_#12100E26] flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary grid place-items-center">
+            <FileText className="w-8 h-8" strokeWidth={1.75} />
+          </div>
+          <h2 className="mt-6 text-2xl font-bold">Demander mon devis gratuit</h2>
+          <p className="mt-3 text-muted-foreground max-w-sm">
+            Quelques questions rapides sur votre projet, et on vous appelle sous 24h pour cadrer
+            précisément votre besoin.
+          </p>
+          <button type="button" onClick={() => openQuoteForm()} className="btn-primary mt-8">
+            Ouvrir le formulaire de devis
+          </button>
+          <a
+            href={QUOTE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 text-xs text-muted-foreground hover:text-primary transition underline underline-offset-2"
+          >
+            La fenêtre ne s'ouvre pas ? Cliquez ici pour l'ouvrir dans un nouvel onglet
+          </a>
         </div>
       </div>
     </div>

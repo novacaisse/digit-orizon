@@ -95,7 +95,7 @@ function ServicesPage() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => openQuoteForm("presence")}
+                  onClick={() => openQuoteForm()}
                   className={tier.highlight ? "btn-primary mt-4" : "btn-ghost mt-4"}
                 >
                   Choisir cette offre
@@ -129,11 +129,7 @@ function ServicesPage() {
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              onClick={() => openQuoteForm("sur-mesure")}
-              className="btn-primary mt-8"
-            >
+            <button type="button" onClick={() => openQuoteForm()} className="btn-primary mt-8">
               Discuter de mon projet
             </button>
           </div>
@@ -164,7 +160,7 @@ function ServicesPage() {
               </a>
               <button
                 type="button"
-                onClick={() => openQuoteForm("zegos")}
+                onClick={() => openQuoteForm()}
                 className="btn-ghost !bg-transparent !text-white !border-white/30"
               >
                 Recevoir une démo
