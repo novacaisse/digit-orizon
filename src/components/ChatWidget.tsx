@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { Loader2, MessageCircle, Send, X } from "lucide-react";
 
-import { onOpenChat } from "@/lib/uiEvents";
+import { onOpenChat, openQuoteForm } from "@/lib/uiEvents";
 import { cn } from "@/lib/utils";
 
-const WHATSAPP_URL = "https://wa.me/2250500259286";
+const WHATSAPP_NUMBER = "2250500259286";
 const AUTO_OPEN_DELAY_MS = 9000;
 const DISMISSED_KEY = "digitorizon-chat-dismissed";
 
@@ -16,7 +16,75 @@ const OPENERS: Record<string, string> = {
   "/contact": "Besoin d'aide pour cadrer votre demande avant de l'envoyer ? Je peux vous guider.",
 };
 
-type Message = { role: "user" | "assistant"; content: string };
+type Cta = "devis" | "whatsapp";
+type Message = { role: "user" | "assistant"; content: string; cta?: Cta };
+
+const CTA_MARKER = /\n?\[\[CTA:(DEVIS|WHATSAPP)\]\]\s*$/;
+
+function extractCta(text: string): { content: string; cta?: Cta } {
+  const match = text.match(CTA_MARKER);
+  if (!match) return { content: text };
+  return {
+    content: text.slice(0, match.index).trim(),
+    cta: match[1] === "DEVIS" ? "devis" : "whatsapp",
+  };
+}
+
+function whatsappUrl(lastUserMessage?: string) {
+  const intro = "Bonjour, je viens du chat du site Digitorizon.";
+  const text = lastUserMessage ? `${intro} ${lastUserMessage}` : intro;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+function renderInlineBold(text: string, keyPrefix: string): ReactNode[] {
+  return text
+    .split(/(\*\*[^*]+\*\*)/g)
+    .filter(Boolean)
+    .map((part, i) =>
+      part.startsWith("**") && part.endsWith("**") ? (
+        <strong key={`${keyPrefix}-${i}`}>{part.slice(2, -2)}</strong>
+      ) : (
+        <span key={`${keyPrefix}-${i}`}>{part}</span>
+      ),
+    );
+}
+
+function FormattedMessage({ text }: { text: string }) {
+  const lines = text.split("\n");
+  const blocks: ReactNode[] = [];
+  let listBuffer: string[] = [];
+
+  const flushList = (key: string) => {
+    if (listBuffer.length === 0) return;
+    blocks.push(
+      <ul key={key} className="list-disc pl-4 space-y-0.5 my-1">
+        {listBuffer.map((item, i) => (
+          <li key={i}>{renderInlineBold(item, `li-${key}-${i}`)}</li>
+        ))}
+      </ul>,
+    );
+    listBuffer = [];
+  };
+
+  lines.forEach((line, i) => {
+    const trimmed = line.trim().replace(/^#+\s*/, "");
+    if (trimmed.startsWith("- ")) {
+      listBuffer.push(trimmed.slice(2));
+      return;
+    }
+    flushList(`list-${i}`);
+    if (trimmed.length > 0) {
+      blocks.push(
+        <p key={`p-${i}`} className="mb-1 last:mb-0">
+          {renderInlineBold(trimmed, `p-${i}`)}
+        </p>,
+      );
+    }
+  });
+  flushList("list-end");
+
+  return <>{blocks}</>;
+}
 
 export function ChatWidget() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -99,28 +167,31 @@ export function ChatWidget() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages, page: pathname }),
+        body: JSON.stringify({
+          messages: nextMessages.map((m) => ({ role: m.role, content: m.content })),
+          page: pathname,
+        }),
       });
       const data = (await res.json()) as { reply?: string };
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: data.reply || "Désolé, je n'ai pas pu répondre. Essayez WhatsApp.",
-        },
-      ]);
+      const { content, cta } = extractCta(
+        data.reply || "Désolé, je n'ai pas pu répondre. Essayez WhatsApp.",
+      );
+      setMessages((prev) => [...prev, { role: "assistant", content, cta }]);
     } catch {
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
           content: "Désolé, une erreur est survenue. Vous pouvez nous écrire sur WhatsApp.",
+          cta: "whatsapp",
         },
       ]);
     } finally {
       setLoading(false);
     }
   };
+
+  const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content;
 
   if (!open) {
     return (
@@ -151,14 +222,34 @@ export function ChatWidget() {
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-[240px]">
         {messages.map((m, i) => (
-          <div
-            key={i}
-            className={cn(
-              "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm",
-              m.role === "assistant" ? "bg-muted text-foreground" : "bg-primary text-white ml-auto",
+          <div key={i} className={cn("max-w-[90%] space-y-2", m.role === "user" && "ml-auto")}>
+            <div
+              className={cn(
+                "rounded-2xl px-4 py-2.5 text-sm",
+                m.role === "assistant" ? "bg-muted text-foreground" : "bg-primary text-white",
+              )}
+            >
+              {m.role === "assistant" ? <FormattedMessage text={m.content} /> : m.content}
+            </div>
+            {m.cta === "devis" && (
+              <button
+                type="button"
+                onClick={() => openQuoteForm()}
+                className="btn-primary !py-2 !px-4 !text-xs"
+              >
+                Demander mon devis gratuit
+              </button>
             )}
-          >
-            {m.content}
+            {m.cta === "whatsapp" && (
+              <a
+                href={whatsappUrl(lastUserMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2 text-xs font-semibold text-white hover:brightness-105 transition"
+              >
+                Continuer sur WhatsApp
+              </a>
+            )}
           </div>
         ))}
         {loading && (
@@ -170,7 +261,7 @@ export function ChatWidget() {
 
       <div className="border-t border-border p-3">
         <a
-          href={WHATSAPP_URL}
+          href={whatsappUrl()}
           target="_blank"
           rel="noopener noreferrer"
           className="mb-2 flex items-center justify-center gap-2 text-xs font-semibold text-[#128C4A] hover:underline"

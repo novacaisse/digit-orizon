@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 
 import { SERVICES, PRESENCE_TIERS, EXTRA_SERVICES } from "@/lib/services";
 import { Illustration } from "@/components/site/Illustration";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import { openQuoteForm } from "@/lib/uiEvents";
 import { cn } from "@/lib/utils";
 import servicePresenceDigitale from "@/assets/illustrations/service-presence-digitale.jpg";
@@ -64,6 +65,8 @@ function ServicesPage() {
           </p>
         </div>
       </section>
+
+      <TrustedBy />
 
       {/* Présence Digitale */}
       <section id={presence.id} className="py-24 bg-white scroll-mt-20">
