@@ -13,10 +13,12 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Lovable's own builds force the Cloudflare preset regardless of this setting.
-  // Outside Lovable (e.g. a Hostinger/VPS build running `npm run build`), this
-  // targets a plain Node.js server instead, since Cloudflare Workers output
-  // isn't a standalone Node app and won't run on generic Node hosting.
+  // Outside Lovable, target whichever platform is actually building: Vercel
+  // sets VERCEL=1 during its own builds and needs the "vercel" preset (Build
+  // Output API), while a Hostinger/VPS build running `npm run build` needs a
+  // plain Node.js server, since Cloudflare Workers output isn't a standalone
+  // Node app and won't run on generic Node hosting.
   nitro: {
-    preset: "node-server",
+    preset: process.env.VERCEL ? "vercel" : "node-server",
   },
 });
