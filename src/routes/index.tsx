@@ -352,6 +352,12 @@ function Landing() {
                 Plus de <Counter target={100} />+ projets livrés, dans des secteurs exigeants
               </h2>
             </div>
+            <Link
+              to="/realisations"
+              className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors shrink-0"
+            >
+              Voir toutes nos réalisations →
+            </Link>
           </div>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROJECTS.map((p, i) => (

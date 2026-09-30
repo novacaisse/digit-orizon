@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 const NAV = [
   { to: "/", label: "Accueil" },
   { to: "/services", label: "Services" },
+  { to: "/realisations", label: "Réalisations" },
   { to: "/a-propos", label: "À propos" },
   { to: "/contact", label: "Contact" },
 ] as const;

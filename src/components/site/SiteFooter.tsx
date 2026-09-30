@@ -5,6 +5,7 @@ import { LOGO_URL } from "@/lib/brand";
 const NAV = [
   { to: "/", label: "Accueil" },
   { to: "/services", label: "Services" },
+  { to: "/realisations", label: "Réalisations" },
   { to: "/a-propos", label: "À propos" },
   { to: "/contact", label: "Contact" },
 ] as const;
